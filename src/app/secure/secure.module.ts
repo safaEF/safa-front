@@ -19,7 +19,6 @@ import { ProductCreateComponent } from './products/product-create/product-create
 import { UploadComponent } from './components/upload/upload.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { OrdersComponent } from './orders/orders.component';
-import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({

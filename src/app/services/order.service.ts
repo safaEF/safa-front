@@ -10,13 +10,10 @@ export class OrderService extends RestService {
   endpoint = `${environment.api}/orders/orders`;
 
   export(): Observable<any> {
-    return this.http.get(`${this.endpoint}/export`,{responseType: "blob"});
+    return this.http.post(`${environment.api}/export`, {}, {responseType: 'blob'});
   }
 
   chart(): Observable<any> {
-    let url=`${this.endpoint}/chart`;
-    console.log(url);
-    
-    return this.http.get(url);
+    return this.http.get(`${environment.api}/chart`);
   }
 }

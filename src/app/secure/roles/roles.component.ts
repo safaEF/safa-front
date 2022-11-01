@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RoleService} from '../../services/role.service';
 import {Role} from '../../interfaces/role';
-
+import {Sort} from '@angular/material/sort';
 @Component({
   selector: 'app-roles',
   templateUrl: './roles.component.html',
@@ -9,20 +9,23 @@ import {Role} from '../../interfaces/role';
 })
 export class RolesComponent implements OnInit {
   roles: Role[] = [];
-  last_page:number;
-
+  sortedData: Role[];
+  
   constructor(private roleService: RoleService) {
+    this.sortedData = this.roles.slice();
   }
-  load(page=1){
-    this.roleService.all(page).subscribe(
-      roles =>{
-        this.last_page=roles.meta.total_pages
-        this.roles = roles.data;
-        console.log("last_page",this.last_page);     
-      }
-    );
-  }
+  load(){
+  this.roleService.all().subscribe(    
+    roles => {
+           
+    this.roles = roles.data}
+  );
+    }
+  
+
   ngOnInit(): void {
+    console.log(this.roles);
+    
     this.load()
     
   }
@@ -35,4 +38,26 @@ export class RolesComponent implements OnInit {
     }
   }
 
+  sortData(sort: Sort) {
+    const data = this.roles.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id':
+          return compare(a.id, b.id, isAsc);
+        default:
+          return 0;
+      }
+    });
+  
+}
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

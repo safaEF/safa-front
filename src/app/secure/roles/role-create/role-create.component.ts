@@ -48,12 +48,16 @@ export class RoleCreateComponent implements OnInit {
   }
 
   submit(): void {
+    console.log(this.form.getRawValue());
+    
     const formData = this.form.getRawValue();
 
     const data = {
       name: formData.name,
       permissions: formData.permissions.filter(p => p.value === true).map(p => p.id)
     };
+    console.log(data);
+    
 
     this.roleService.create(data)
       .subscribe(() => this.router.navigate(['/roles']));

@@ -16,10 +16,8 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     Auth.userEmitter.subscribe((user:User) =>{
-    console.log(user);
     
-     this.user = user
-     ;
+     this.user = user;
     
     });
   }

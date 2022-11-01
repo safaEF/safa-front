@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import * as c3 from 'c3';
 import {OrderService} from '../../services/order.service';
 import { map } from 'rxjs/operators';
+import * as c3 from 'c3';
 
 
 @Component({
@@ -44,7 +44,6 @@ export class DashboardComponent implements OnInit {
       var sales:any=res.data.map(r => r.sum)
       x.splice(0,0,'x'),
       sales.splice(0,0,'Sales')
-      console.log(x,sales);
       
       chart.load({
         columns: [x,sales

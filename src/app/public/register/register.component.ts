@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -30,8 +31,10 @@ export class RegisterComponent implements OnInit {
       email: this.email,
       password: this.password,
       password_confirm: this.passwordConfirm,
-      role: 1
-    }).subscribe(() => this.router.navigate(['/login']));
+      /* role: 1 */
+    }).subscribe(() => this.router.navigate(['/login']))
+    
+     
   }
 
 }

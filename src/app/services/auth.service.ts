@@ -12,16 +12,16 @@ export class AuthService {
   constructor(protected http: HttpClient) {
   }
 
-  login(data) {
-    return this.http.post("http://127.0.0.1:8000/api/login", data);
+  login(data): Observable<any> {
+    return this.http.post(`${environment.api}/login`, data);
   }
 
   register(data): Observable<User> {
     return this.http.post<User>(`${environment.api}/register`, data);
   }
 
-  user() {
-    return this.http.get(`${environment.api}/user`);
+  user(): Observable<User> {
+    return this.http.get<User>(`${environment.api}/user`);
   }
 
   logout(): Observable<void> {

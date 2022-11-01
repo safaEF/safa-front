@@ -33,8 +33,7 @@ export class UserEditComponent implements OnInit {
     });
 
     this.roleService.all().subscribe(
-      roles =>{console.log(roles);
-       this.roles = roles.data}
+      roles => this.roles = roles
     );
 
     this.id = this.route.snapshot.params.id;
@@ -45,18 +44,13 @@ export class UserEditComponent implements OnInit {
           first_name: user.first_name,
           last_name: user.last_name,
           email: user.email,
-          
-            
+          role_id: user.role.id
         });
-        if(user.role)
-        this.form.patchValue({role_id: user.role.id})
       }
     );
   }
 
   submit(): void {
-    console.log(this.form.getRawValue());
-    
     this.userService.update(this.id, this.form.getRawValue())
       .subscribe(() => this.router.navigate(['/users']));
   }

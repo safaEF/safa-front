@@ -6,10 +6,13 @@ import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  templateUrl:'./login.component.html',
   styleUrls: ['./login.component.css', './../public.component.css']
 })
+
 export class LoginComponent implements OnInit {
+  alert: boolean=false
+  alert_danger: boolean=false
   form: FormGroup;
 
   constructor(
@@ -26,8 +29,32 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  submit(): void {
-    this.authService.login(this.form.getRawValue())
-      .subscribe(() => this.router.navigate(['/']));
+   submit(): void {
+   this.authService.login(this.form.getRawValue())
+
+
+      .subscribe((response) =>  {
+        // if login success do this
+        this.router.navigate(['/']), 
+        this.alert=true
+      },
+
+      // else do this 
+      (error) => {
+        console.log("error : ", error);
+        this.alert_danger=true
+      });
+      // empty sign in form 
+      this.form.reset({})
+
+    }
+     // end of function
+   closeAlert()
+   {
+    this.alert=false
+   }
+   closeAlertDanger()
+   {
+    this.alert_danger=false
+   }
   }
-}

@@ -1,12 +1,23 @@
 <main class="form-signin">
+<div *ngIf="alert" class="alert alert-success alert-dismissible" role="alert">
+  <strong> success signin </strong> Your data has been entered successfully! 
+    <button (click)="closeAlert()" type="button"  data-dismiss="alert">
+  <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div *ngIf="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+  <strong> error signin </strong> please verify your informations! 
+    <button (click)="closeAlertDanger()" type="button"  data-dismiss="alert">
+  <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
   <form [formGroup]="form" (submit)="submit()">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
     <input formControlName="email" name="email" type="email" class="form-control" placeholder="Email address" required>
 
-    <input formControlName="password" name="password" type="password" class="form-control" placeholder="Password"
-           required>
+    <input formControlName="password" name="password" type="password" class="form-control" placeholder="Password" required>
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
-  </form>
+    <button class="w-100 btn btn-lg btn-primary alert-success" role="alert" type="submit">submit</button>
+  </form>  
 </main>

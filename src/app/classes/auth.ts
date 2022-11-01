@@ -13,5 +13,4 @@ export class Auth {
     return this._user
   }
   
-
 }

@@ -27,20 +27,16 @@ export class UserCreateComponent implements OnInit {
       first_name: '',
       last_name: '',
       email: '',
-      role_id: '',
-      password:''
+      role_id: ''
     });
 
     this.roleService.all().subscribe(
-     
+      roles => this.roles = roles.data
       
-      (roles:any) => this.roles = roles.data
     );
   }
 
   submit(): void {
-    console.log(this.form.getRawValue());
-    
     this.userService.create(this.form.getRawValue()).subscribe(
       () => this.router.navigate(['/users'])
     );

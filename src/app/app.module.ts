@@ -8,10 +8,13 @@ import {PublicModule} from './public/public.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CredentialInterceptor} from './interceptors/credential.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
     AppComponent,
+ 
   ],
   imports: [
     BrowserModule,
@@ -19,7 +22,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     SecureModule,
     PublicModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule,
+    MatSortModule
   ],
   providers: [
     {

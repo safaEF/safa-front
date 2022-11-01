@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Order} from '../../interfaces/order';
 import {OrderService} from '../../services/order.service';
-import {saveAs} from 'file-saver';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
@@ -35,14 +34,10 @@ export class OrdersComponent implements OnInit {
   }
 
   load(page = 1): void {
-    this.orderService.all(page).subscribe(
+    this.orderService.all().subscribe(
       res => {
-        // console.log(res);
-        
         this.orders = res.data;
-        this.lastPage = res.meta.total_pages;
-        // console.log(this.lastPage);
-        
+        this.lastPage = res.meta.last_page;
         this.show = true;
       }
     );
@@ -59,32 +54,13 @@ export class OrdersComponent implements OnInit {
   export(): void {
     this.orderService.export().subscribe(
       res => {
-        
-        
-        // blob =>
-          // {saveAs(blob, 'order.csv')
-        console.log(res);
-        
         const blob = new Blob([res], {type: 'text/csv'});
-        const downloadUrl = window.URL.createObjectURL(blob);
+        const downloadUrl = window.URL.createObjectURL(res);
         const link = document.createElement('a');
         link.href = downloadUrl;
         link.download = 'orders.csv';
         link.click();
-        console.log("download");
-        
       }
-      
-      ,(err:any)=>console.log(err)
-      
-      
-         
-         
-        
     );
   }
 }
-function e(e: any): () => void {
-  throw new Error('Function not implemented.');
-}
-
