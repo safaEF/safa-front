@@ -2,26 +2,47 @@
   <a routerLink="/roles/create" class="btn btn-sm btn-outline-secondary">Add</a>
 </div>
 
-<div  class="table-responsive">
-  <table class="table table-striped table-sm">
-    <thead>
-    <tr>
-      <th>#</th>
-      <th mat-sort-header="id">Name</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody  >
-    <tr *ngFor="let role of roles">
-      <td>{{roles.name}}</td>
-      <td>{{role.name}}</td>
-      <td>
-        <div class="btn-group mr-2">
-          <a [routerLink]="['/roles', role.id, 'edit']" class="btn btn-sm btn-outline-secondary">Edit</a>
-          <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary"(click)="delete(role.id)">Delete</a>
-        </div>
-      </td>
-    </tr>
-    </tbody>
+<div class="table table-responsive" >
+  <table mat-table [dataSource]="dataSource" matSort class="table table-sm table-striped mat-elevation-z8">
+  <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+          No.
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+        Name
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+<!--      <th> Name</th>
+<th>Action</th> -->
+    <ng-container>
+      <tr *ngFor="let role of roles">
+            <td>{{role.id}}</td>
+            <td>{{role.name}}</td>
+            <td>
+              <div class="btn-group mr-2">
+                <a [routerLink]="['/roles', role.id, 'edit']" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" (click)="delete(role.id)">Delete</a>
+              </div>
+            </td>
+          </tr>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
+
   </table>
 </div>
+
+
+
+
+
+
+
+

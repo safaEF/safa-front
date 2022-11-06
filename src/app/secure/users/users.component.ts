@@ -22,8 +22,8 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.userService.all().subscribe(
       users => {this.users = users
-        console.log("users", this.users);}
-       
+        console.log("users : ", this.users);}
+
     );
   }
 
@@ -55,7 +55,7 @@ export class UsersComponent implements OnInit {
           return 0;
       }
     });
-  
+
 }
 }
 

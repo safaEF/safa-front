@@ -34,8 +34,9 @@ export class RoleCreateComponent implements OnInit {
         this.permissions.forEach(p => {
           this.permissionArray.push(
             this.formBuilder.group({
-              value: false,
-              id: p.id
+              //value: false,
+              id: p.id,
+              name: p.name
             })
           );
         });
@@ -49,15 +50,15 @@ export class RoleCreateComponent implements OnInit {
 
   submit(): void {
     console.log(this.form.getRawValue());
-    
+
     const formData = this.form.getRawValue();
 
     const data = {
       name: formData.name,
-      permissions: formData.permissions.filter(p => p.value === true).map(p => p.id)
+      permissions: formData.permissions.filter(p => p.value === true).map(p => p)
     };
     console.log(data);
-    
+
 
     this.roleService.create(data)
       .subscribe(() => this.router.navigate(['/roles']));

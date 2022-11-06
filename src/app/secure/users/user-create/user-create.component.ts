@@ -24,15 +24,17 @@ export class UserCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      first_name: '',
-      last_name: '',
-      email: '',
-      role_id: ''
-    });
+      first_name: [''],
+      last_name: [''],
+      email: [''],
+      role_id: '',
+      password:['']
+    }
+    );
 
     this.roleService.all().subscribe(
       roles => this.roles = roles.data
-      
+
     );
   }
 

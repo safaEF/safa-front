@@ -25,7 +25,7 @@ export class ProductsComponent implements OnInit {
     this.productService.all().subscribe(
       res => {
         console.log(res);
-        
+
         this.products = res.data;
         this.lastPage = res.meta.last_page;
       }
@@ -54,7 +54,7 @@ export class ProductsComponent implements OnInit {
           return 0;
       }
     });
-  
+
 }
 }
 

@@ -19,6 +19,9 @@ import { ProductCreateComponent } from './products/product-create/product-create
 import { UploadComponent } from './components/upload/upload.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { OrdersComponent } from './orders/orders.component';
+import {MatSortModule} from "@angular/material/sort";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -44,13 +47,16 @@ import { OrdersComponent } from './orders/orders.component';
   exports: [
     SecureComponent
   ],
-  imports: [
-    
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+
+        CommonModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSortModule,
+        MatTableModule,
+        MatPaginatorModule
+    ]
 })
 export class SecureModule {
 }

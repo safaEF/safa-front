@@ -11,7 +11,7 @@ import {AuthService} from '../../services/auth.service';
 })
 
 export class LoginComponent implements OnInit {
-  alert: boolean=false
+  alert_success: boolean=false
   alert_danger: boolean=false
   form: FormGroup;
 
@@ -35,23 +35,24 @@ export class LoginComponent implements OnInit {
 
       .subscribe((response) =>  {
         // if login success do this
-        this.router.navigate(['/']), 
-        this.alert=true
+
+        this.alert_success=true,
+        this.router.navigate(['/'])
       },
 
-      // else do this 
+      // else do this
       (error) => {
         console.log("error : ", error);
         this.alert_danger=true
       });
-      // empty sign in form 
+      // empty sign in form
       this.form.reset({})
 
     }
      // end of function
    closeAlert()
    {
-    this.alert=false
+    this.alert_success=false
    }
    closeAlertDanger()
    {
