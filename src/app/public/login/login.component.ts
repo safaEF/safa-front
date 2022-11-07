@@ -33,16 +33,16 @@ export class LoginComponent implements OnInit {
    this.authService.login(this.form.getRawValue())
 
 
-      .subscribe((response) =>  {
+      .subscribe(() =>  {
         // if login success do this
 
         this.alert_success=true,
-        this.router.navigate(['/'])
+        setTimeout(()=>this.router.navigate(['/']),1000);
+
       },
 
       // else do this
       (error) => {
-        console.log("error : ", error);
         this.alert_danger=true
       });
       // empty sign in form
